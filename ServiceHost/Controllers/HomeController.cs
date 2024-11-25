@@ -2,9 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ServiceHost.Controllers
 {
-    public class HomeController : AdminBaseController
+    public class HomeController : Controller
     {
-        [Area("Administration")]
         public IActionResult Index()
         {
             return View();

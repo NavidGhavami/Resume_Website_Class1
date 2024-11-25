@@ -2,7 +2,7 @@
 
 namespace ServiceHost.Areas.Administration.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : AdminBaseController
     {
         public IActionResult Index()
         {

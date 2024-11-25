@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewData["Title"] = "لیست کاربران";
+}
+
+
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <ul class="breadcrumb breadcrumb-style" style="float : right;">
+            <li class="breadcrumb-item">
+                <h4 class="page-title">@ViewData["Title"]</h4>
+            </li>
+            <li class="breadcrumb-item bcrumb-1">
+                <a asp-area="Administration" asp-controller="Home" asp-action="Index">
+                    <i class="fas fa-home"></i>داشبورد</a>
+            </li>
+            <li class="breadcrumb-item bcrumb-2">
+                <a href="#" onclick="return false;">مدیریت کاربران</a>
+            </li>
+            <li class="breadcrumb-item active">لیست کاربران</li>
+        </ul>
+    </div>
+</div>
+
+
+    
+<div class="col-md-12 card">
+    <h2 class="page-title mt-4 mb-4 bg-grey p-4">جستجو کاربران</h2>
+    <div class="row clearfix">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="form-line">
+                    <input type="text" class="form-control" placeholder="نام و نام خانوادگی">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="form-line">
+                    <input type="text" class="form-control" placeholder="شماره همراه">
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary btn-block">جستجو</button>
+    </div>
+    <div class="table-responsive m-t-40">
+        <table class="table table-hover table-striped table-bordered">
+            <a asp-area="Administration" asp-controller="User" asp-action="CreateUser" class="btn btn-success mb-3">ایجاد کاربر جدید</a>
+            <thead class="bg-dark text-white">
+            <tr>
+                <th class="text-center">ردیف</th>
+                <th class="text-center">تصویر</th>
+                <th class="text-center">نام و نام خانوادگی</th>
+                <th class="text-center">شماره همراه</th>
+                <th class="text-center">ایمیل</th>
+                <th class="text-center">وضعیت</th>
+                <th class="text-center">تاریخ ایجاد</th>
+                <th class="text-center">عملیات</th>
+
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="text-center">1</td>
+                <td class="table-img text-center">
+                    <img src="~/AdminSite/assets/images/products/p-13.jpg" alt="">
+                </td>
+                <td class="text-center">نوید قوامی</td>
+                <td class="text-center">09337878585</td>
+                <td class="text-center">navid.ghavami1994@gmail.com</td>
+                <td class="text-center">
+                    <i class="material-icons text-success">check_circle</i>
+                </td>
+                <td class="text-center">دوشنبه 5 آذر 1403</td>
+                <td class="text-center">
+                    <a class="btn btn-warning">
+                        <i class="material-icons">mode_edit</i>
+                    </a>
+                    <a class="btn btn-danger">
+                        <i class="material-icons">block</i>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
