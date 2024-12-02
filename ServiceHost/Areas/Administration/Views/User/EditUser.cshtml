@@ -1,7 +1,6 @@
-﻿@model Resume.Application.Dtos.Users.CreateUserDto
-
+﻿
 @{
-    ViewData["Title"] = "ایجاد کاربر جدید";
+    ViewData["Title"] = "ویرایش کاربر";
 }
 
 <div class="row">
@@ -18,36 +17,33 @@
             <li class="breadcrumb-item bcrumb-2">
                 <a href="#" onclick="return false;">مدیریت کاربران</a>
             </li>
-            <li class="breadcrumb-item active">ایجاد کاربر جدید</li>
+            <li class="breadcrumb-item active">ویرایش کاربر</li>
         </ul>
     </div>
 </div>
 
 <div class="card p-5">
-    <h2 class="card-inside-title" style="font-size : 22px; margin-top : 15px; margin-bottom:25px;">فرم ایجاد کاربر</h2>
-    <form asp-area="Administration" asp-controller="User" asp-action="CreateUser">
+    <h2 class="card-inside-title" style="font-size : 22px; margin-top : 15px; margin-bottom:25px;">فرم ویرایش کاربر</h2>
+    <form asp-area="Administration" asp-controller="User" asp-action="EditUser">
         <div class="row clearfix">
             <div class="col-sm-4">
                 <div class="form-group">
                     <div class="form-line">
-                        <input type="text" asp-for="Fullname" class="form-control" placeholder="نام و نام خانوادگی">
-                        <span asp-validation-for="Fullname" class="text-danger "></span>
+                        <input type="text" class="form-control" placeholder="نام و نام خانوادگی">
                     </div>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="form-group">
                     <div class="form-line">
-                        <input type="text" asp-for="Mobile" class="form-control" placeholder="شماره همراه">
-                        <span asp-validation-for="Mobile" class="text-danger "></span>
-
+                        <input type="text" class="form-control" placeholder="شماره همراه">
                     </div>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="form-group">
                     <div class="form-line">
-                        <input type="text" asp-for="Email" class="form-control" placeholder="ایمیل">
+                        <input type="text" class="form-control" placeholder="ایمیل">
                     </div>
                 </div>
             </div>
@@ -56,18 +52,14 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <div class="form-line">
-                        <input type="password" asp-for="Password" class="form-control" placeholder="رمز عبور">
-                        <span asp-validation-for="Password" class="text-danger "></span>
-
+                        <input type="password" class="form-control" placeholder="رمز عبور">
                     </div>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
                     <div class="form-line">
-                        <input type="password" asp-for="ConfirmPassword" class="form-control" placeholder="تکرار رمز عبور">
-                        <span asp-validation-for="ConfirmPassword" class="text-danger "></span>
-
+                        <input type="password" class="form-control" placeholder="تکرار رمز عبور">
                     </div>
                 </div>
             </div>
@@ -78,7 +70,7 @@
                     <div class="form-line">
                         <p>
                             <label>
-                                <input asp-for="IsBlock" type="checkbox" checked="checked">
+                                <input type="checkbox" checked="checked">
                                 <span>بلاک شده / نشده؟</span>
                             </label>
                         </p>
@@ -94,13 +86,13 @@
                                 <input type="file" multiple="">
                             </div>
                             <div class="file-path-wrapper">
-                                <input asp-for="Avatar" class="file-path validate" type="text" placeholder="یک فایل را آپلود کنید">
+                                <input class="file-path validate" type="text" placeholder="یک فایل را آپلود کنید">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <button class="btn tn-success btn-block" type="submit">ثبت اطلاعات</button>
+            <button class="btn btn-warning btn-block" type="submit">ثبت اطلاعات</button>
         </div>
     </form>
 </div>

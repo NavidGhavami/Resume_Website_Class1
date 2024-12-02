@@ -47,12 +47,44 @@ namespace ServiceHost.Areas.Administration.Controllers
         [HttpPost("create-user")]
         public async Task<IActionResult> CreateUser(CreateUserDto user)
         {
+            var result =  await _userService.CreateUser(user);
+
+            switch (result)
+            {
+                case CreateUserResult.Success:
+                    ViewBag["Message"] = "ثبت اطلاعات با موفقیت انجام شد";
+                    break;
+                case CreateUserResult.DuplicateMobile:
+                    ViewBag["Message"] = "شماره همراه تکراری می باشد";
+                    break;
+                case CreateUserResult.Error:
+                    ViewBag["Message"] = "خطایی رخ داد. لطفا دوباره تلاش نمایید";
+                    break;
+            }
+
             return View();
         }
 
 
 
         #endregion
+
+        #region Edit User
+
+        [HttpGet("edit-user")]
+        public async Task<IActionResult> EditUser(long id)
+        {
+            return View();
+        }
+
+        [HttpPost("edit-user")]
+        public async Task<IActionResult> EditUser(EditUserDto userEdit)
+        {
+            return View();
+        }
+
+        #endregion
+
 
         #endregion
     }
