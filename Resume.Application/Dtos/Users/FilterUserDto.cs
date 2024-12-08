@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Resume.Application.Dtos.Users
+﻿namespace Resume.Application.Dtos.Users
 {
     public class FilterUserDto
     {
@@ -12,6 +10,7 @@ namespace Resume.Application.Dtos.Users
         public string Mobile { get; set; }
         public bool IsBlock { get; set; }
         public string? Avatar { get; set; }
+        public string CreateDate { get; set; }
 
         #endregion
     }

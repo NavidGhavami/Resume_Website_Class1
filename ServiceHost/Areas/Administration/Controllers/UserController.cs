@@ -28,9 +28,13 @@ namespace ServiceHost.Areas.Administration.Controllers
         #region Users List
 
         [HttpGet("users-list")]
-        public async Task<IActionResult> UserList()
+        public async Task<IActionResult> UserList(FilterUserDto filter, string fullname, string mobile)
         {
-            return View();
+            filter.Fullname = fullname;
+            filter.Mobile = mobile;
+
+            var user = await _userService.GetAllUsers(filter);
+            return View(user);
         }
 
         #endregion
@@ -44,25 +48,30 @@ namespace ServiceHost.Areas.Administration.Controllers
             return View();
         }
 
-        [HttpPost("create-user")]
+        [HttpPost("create-user"), ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateUser(CreateUserDto user)
         {
-            var result =  await _userService.CreateUser(user);
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            var result = await _userService.CreateUser(user);
 
             switch (result)
             {
                 case CreateUserResult.Success:
-                    ViewBag["Message"] = "ثبت اطلاعات با موفقیت انجام شد";
-                    break;
+                    return RedirectToAction("UserList", "User", new { area = "Administration" });
                 case CreateUserResult.DuplicateMobile:
-                    ViewBag["Message"] = "شماره همراه تکراری می باشد";
+                    TempData["DuplicateMobile"] = "شماره همراه وارد شده تکراری می باشد";
                     break;
                 case CreateUserResult.Error:
-                    ViewBag["Message"] = "خطایی رخ داد. لطفا دوباره تلاش نمایید";
+                    //return RedirectToAction("NotFoundPage", "Home", new {area = "Administration"});
+                    return NotFound();
                     break;
             }
 
-            return View();
+            return View(user);
         }
 
 

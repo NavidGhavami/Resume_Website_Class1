@@ -4,6 +4,10 @@
     ViewData["Title"] = "ایجاد کاربر جدید";
 }
 
+
+<partial name="_AdminJqueryValidators" />
+
+
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <ul class="breadcrumb breadcrumb-style" style="float : right;">
@@ -30,7 +34,7 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     <div class="form-line">
-                        <input type="text" asp-for="Fullname" class="form-control" placeholder="نام و نام خانوادگی">
+                        <input type="text" asp-for="Fullname" class="form-control mb-4" placeholder="نام و نام خانوادگی">
                         <span asp-validation-for="Fullname" class="text-danger "></span>
                     </div>
                 </div>
@@ -38,7 +42,7 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     <div class="form-line">
-                        <input type="text" asp-for="Mobile" class="form-control" placeholder="شماره همراه">
+                        <input type="text" asp-for="Mobile" class="form-control mb-4" placeholder="شماره همراه">
                         <span asp-validation-for="Mobile" class="text-danger "></span>
 
                     </div>
@@ -47,7 +51,8 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     <div class="form-line">
-                        <input type="text" asp-for="Email" class="form-control" placeholder="ایمیل">
+                        <input type="text" asp-for="Email" class="form-control mb-4" placeholder="ایمیل">
+                        <span asp-validation-for="Email" class="text-danger "></span>
                     </div>
                 </div>
             </div>
@@ -56,7 +61,7 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <div class="form-line">
-                        <input type="password" asp-for="Password" class="form-control" placeholder="رمز عبور">
+                        <input type="password" asp-for="Password" class="form-control mb-4" placeholder="رمز عبور">
                         <span asp-validation-for="Password" class="text-danger "></span>
 
                     </div>
@@ -65,7 +70,7 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <div class="form-line">
-                        <input type="password" asp-for="ConfirmPassword" class="form-control" placeholder="تکرار رمز عبور">
+                        <input type="password" asp-for="ConfirmPassword" class="form-control mb-4" placeholder="تکرار رمز عبور">
                         <span asp-validation-for="ConfirmPassword" class="text-danger "></span>
 
                     </div>

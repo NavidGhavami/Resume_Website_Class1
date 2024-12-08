@@ -29,7 +29,7 @@ namespace Resume.Application.Dtos.Users
         public string Password { get; set; }
 
         [Display(Name = " تکرار کلمه ی عبور")]
-        [Required(ErrorMessage = "لطفا تکرار {0} را وارد کنید")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(250, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد")]
         [Compare("Password", ErrorMessage = "کلمه های عبور مغایرت دارند")]
         public string ConfirmPassword { get; set; }

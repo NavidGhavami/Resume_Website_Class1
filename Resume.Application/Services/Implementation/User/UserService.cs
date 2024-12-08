@@ -58,6 +58,42 @@ public class UserService : IUserService
         }
     }
 
+
+
+    #endregion
+
+    #region Filter Users
+
+    public async Task<List<FilterUserDto>> GetAllUsers(FilterUserDto filter)
+    {
+        var query = _userRepository.GetQuery().AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(filter.Fullname))
+        {
+            query = query.Where(x => EF.Functions.Like(x.Fullname, $"%{filter.Fullname}%"));
+            //query = query.Where(x => x.Fullname.Contains(filter.Fullname));
+        }
+
+        if (!string.IsNullOrWhiteSpace(filter.Mobile))
+        {
+            query = query.Where(x => EF.Functions.Like(x.Mobile, $"%{filter.Mobile}%"));
+        }
+
+        var allUsers = await query.Select(x => new FilterUserDto
+        {
+            Id = x.Id,
+            Fullname = x.Fullname,
+            Email = x.Email,
+            Mobile = x.Mobile,
+            IsBlock = x.IsBlock,
+            Avatar = x.Avatar,
+            CreateDate = x.CreateDate.ToShortDateString()
+        }).OrderByDescending(x=>x.Id).ToListAsync();
+
+        return allUsers;
+
+    }
+
     #endregion
 
     #endregion
