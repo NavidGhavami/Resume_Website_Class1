@@ -58,6 +58,33 @@
             </div>
         </div>
         <div class="row clearfix">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <div class="form-line">
+                        <input type="text" asp-for="BirthDate" class="form-control mb-4" placeholder="تاریخ تولد">
+                        <span asp-validation-for="BirthDate" class="text-danger "></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <div class="form-line">
+                        <input type="text" asp-for="BirthPlace" class="form-control mb-4" placeholder="محل تولد">
+                        <span asp-validation-for="BirthPlace" class="text-danger "></span>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <div class="form-line">
+                        <input type="text" asp-for="Description" class="form-control mb-4" placeholder="توضیحات">
+                        <span asp-validation-for="Description" class="text-danger "></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
             <div class="col-sm-6">
                 <div class="form-group">
                     <div class="form-line">
@@ -83,7 +110,7 @@
                     <div class="form-line">
                         <p>
                             <label>
-                                <input asp-for="IsBlock" type="checkbox" checked="checked">
+                                <input asp-for="IsBlock" type="checkbox">
                                 <span>بلاک شده / نشده؟</span>
                             </label>
                         </p>

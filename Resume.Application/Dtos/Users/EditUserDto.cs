@@ -4,4 +4,11 @@
     {
         public long Id { get; set; }
     }
+
+    public enum EditUserResult
+    {
+        Success,
+        UserNotFound,
+        Error
+    }
 }

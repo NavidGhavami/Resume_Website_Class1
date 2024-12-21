@@ -23,7 +23,22 @@ namespace Resume.Domain.Entities.User
 	    [MaxLength(11, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد")]
 	    public string Mobile { get; set; }
 
-	    [Display(Name = "کلمه ی عبور")]
+        [Display(Name = "تاریخ تولد")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(50, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد")]
+        public string BirthDate { get; set; }
+
+        [Display(Name = "محل تولد")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(150, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد")]
+        public string BirthPlace { get; set; }
+
+        [Display(Name = "توضیحات")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(250, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد")]
+        public string Description { get; set; }
+
+        [Display(Name = "کلمه ی عبور")]
 	    [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
 	    [DataType(DataType.Password)]
 	    [MaxLength(250, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد")]

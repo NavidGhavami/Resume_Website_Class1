@@ -1,6 +1,6 @@
-﻿
+﻿@model Resume.Application.Dtos.Users.EditUserDto
 @{
-    ViewData["Title"] = "ویرایش کاربر";
+    ViewData["Title"] = $"ویرایش کاربر : {ViewBag.Fullname}";
 }
 
 <div class="row">
@@ -17,33 +17,63 @@
             <li class="breadcrumb-item bcrumb-2">
                 <a href="#" onclick="return false;">مدیریت کاربران</a>
             </li>
-            <li class="breadcrumb-item active">ویرایش کاربر</li>
+            <li class="breadcrumb-item active">ویرایش کاربر : @ViewBag.Fullname</li>
         </ul>
     </div>
 </div>
 
 <div class="card p-5">
     <h2 class="card-inside-title" style="font-size : 22px; margin-top : 15px; margin-bottom:25px;">فرم ویرایش کاربر</h2>
-    <form asp-area="Administration" asp-controller="User" asp-action="EditUser">
+    <form asp-area="Administration" asp-controller="User" asp-action="EditUser" method="post">
         <div class="row clearfix">
             <div class="col-sm-4">
                 <div class="form-group">
                     <div class="form-line">
-                        <input type="text" class="form-control" placeholder="نام و نام خانوادگی">
+                        <input type="text" asp-for="Fullname" class="form-control" placeholder="نام و نام خانوادگی">
+                        <span asp-validation-for="Fullname" class="text-danger "></span>
                     </div>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="form-group">
                     <div class="form-line">
-                        <input type="text" class="form-control" placeholder="شماره همراه">
+                        <input type="text" asp-for="Mobile" class="form-control" placeholder="شماره همراه">
+                        <span asp-validation-for="Mobile" class="text-danger "></span>
                     </div>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="form-group">
                     <div class="form-line">
-                        <input type="text" class="form-control" placeholder="ایمیل">
+                        <input type="text" asp-for="Email" class="form-control" placeholder="ایمیل">
+                        <span asp-validation-for="Email" class="text-danger "></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <div class="form-line">
+                        <input type="text" asp-for="BirthDate" class="form-control mb-4" placeholder="تاریخ تولد">
+                        <span asp-validation-for="BirthDate" class="text-danger "></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <div class="form-line">
+                        <input type="text" asp-for="BirthPlace" class="form-control mb-4" placeholder="محل تولد">
+                        <span asp-validation-for="BirthPlace" class="text-danger "></span>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <div class="form-line">
+                        <input type="text" asp-for="Description" class="form-control mb-4" placeholder="توضیحات">
+                        <span asp-validation-for="Description" class="text-danger "></span>
                     </div>
                 </div>
             </div>
@@ -52,14 +82,16 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <div class="form-line">
-                        <input type="password" class="form-control" placeholder="رمز عبور">
+                        <input type="password" asp-for="Password" class="form-control" placeholder="رمز عبور">
+                        <span asp-validation-for="Password" class="text-danger "></span>
                     </div>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
                     <div class="form-line">
-                        <input type="password" class="form-control" placeholder="تکرار رمز عبور">
+                        <input type="password" asp-for="ConfirmPassword" class="form-control" placeholder="تکرار رمز عبور">
+                        <span asp-validation-for="ConfirmPassword" class="text-danger "></span>
                     </div>
                 </div>
             </div>
@@ -70,7 +102,7 @@
                     <div class="form-line">
                         <p>
                             <label>
-                                <input type="checkbox" checked="checked">
+                                <input asp-for="IsBlock" type="checkbox" disabled="disabled">
                                 <span>بلاک شده / نشده؟</span>
                             </label>
                         </p>
@@ -83,7 +115,7 @@
                         <div class="file-field input-field">
                             <div class="btn">
                                 <span>آپلود تصویر آواتار</span>
-                                <input type="file" multiple="">
+                                <input asp-for="Avatar" type="file">
                             </div>
                             <div class="file-path-wrapper">
                                 <input class="file-path validate" type="text" placeholder="یک فایل را آپلود کنید">

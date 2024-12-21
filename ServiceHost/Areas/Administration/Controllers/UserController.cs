@@ -39,7 +39,6 @@ namespace ServiceHost.Areas.Administration.Controllers
 
         #endregion
 
-
         #region Create User
 
         [HttpGet("create-user")]
@@ -80,17 +79,77 @@ namespace ServiceHost.Areas.Administration.Controllers
 
         #region Edit User
 
-        [HttpGet("edit-user")]
+        [HttpGet("edit-user/{id}")]
         public async Task<IActionResult> EditUser(long id)
         {
-            return View();
+            var user = await _userService.GetForEdit(id);
+
+            ViewBag.Fullname = user.Fullname;
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return View(user);
         }
 
-        [HttpPost("edit-user")]
+        [HttpPost("edit-user/{id}"), ValidateAntiForgeryToken]
         public async Task<IActionResult> EditUser(EditUserDto userEdit)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            
+            var result = await _userService.EditUser(userEdit);
+
+            switch (result)
+            {
+                case EditUserResult.Success:
+                    return RedirectToAction("UserList", "User", new { area = "Administration" });
+                    break;
+                case EditUserResult.UserNotFound:
+                    return NotFound();
+                break;
+                case EditUserResult.Error:
+                    return NotFound();
+            }
+
+
+            return View(userEdit);
         }
+
+        #endregion
+
+        #region Block and UnBlock User
+
+        [HttpGet("block-user/{id}")]
+        public async Task<IActionResult> BlockUser(long id)
+        {
+            var user = await _userService.BlockUser(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return RedirectToAction("UserList", "User", new { area = "Administration" });
+        }
+
+        [HttpGet("unblock-user/{id}")]
+        public async Task<IActionResult> UnBlockUser(long id)
+        {
+            var user = await _userService.UnBlockUser(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return RedirectToAction("UserList", "User", new { area = "Administration" });
+        }
+
 
         #endregion
 

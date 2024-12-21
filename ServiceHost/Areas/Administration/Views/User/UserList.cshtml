@@ -89,18 +89,19 @@
                         }
                         <td class="text-center">@user.CreateDate</td>
                         <td class="text-center">
-                            <a class="btn btn-warning" asp-area="Administration" asp-controller="User" asp-action="EditUser">
+                            <a class="btn btn-warning" asp-area="Administration" 
+                               asp-controller="User" asp-action="EditUser" asp-route-id="@user.Id">
                                 <i class="material-icons">mode_edit</i>
                             </a>
                            @if (!user.IsBlock)
                             {
-                                <a class="btn btn-danger">
+                                <a asp-area="Administration" asp-controller="User" asp-action="BlockUser" asp-route-id="@user.Id" class="btn btn-danger">
                                     <i class="material-icons">block</i>
                                 </a>
                             }
                            else
                            {
-                               <a class="btn btn-success">
+                                <a asp-area="Administration" asp-controller="User" asp-action="UnBlockUser" asp-route-id="@user.Id" class="btn btn-success">
                                     <i class="material-icons">check_circle</i>
                                </a>
                            }

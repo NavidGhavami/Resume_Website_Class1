@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using Resume.Application.Services.Implementation.PasswordHasher;
 using Resume.Application.Services.Implementation.User;
+using Resume.Application.Services.Interface.PasswordHasher;
 using Resume.Application.Services.Interface.User;
 using Resume.Domain.Context;
 using Resume.Domain.Repository;
@@ -30,6 +32,7 @@ builder.Services.AddDbContext<DatabaseContext>(option =>
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
 builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 
 #endregion
 
