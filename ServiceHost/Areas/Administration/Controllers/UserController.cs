@@ -86,23 +86,23 @@ namespace ServiceHost.Areas.Administration.Controllers
 
             ViewBag.Fullname = user.Fullname;
 
-            if (user == null)
+            if (user.Id == 0)
             {
-                return NotFound();
+                return RedirectToAction("NotFound","Home");
             }
 
             return View(user);
         }
 
         [HttpPost("edit-user/{id}"), ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditUser(EditUserDto userEdit)
+        public async Task<IActionResult> EditUser(EditUserDto userEdit, IFormFile avatar)
         {
             if (!ModelState.IsValid)
             {
                 return View();
             }
             
-            var result = await _userService.EditUser(userEdit);
+            var result = await _userService.EditUser(userEdit, avatar);
 
             switch (result)
             {

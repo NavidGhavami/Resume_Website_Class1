@@ -8,5 +8,11 @@ namespace ServiceHost.Controllers
         {
             return View();
         }
+
+        [HttpGet("404-page-not-found")]
+        public IActionResult NotFound()
+        {
+            return View();
+        }
     }
 }

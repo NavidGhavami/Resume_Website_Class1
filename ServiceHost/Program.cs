@@ -1,6 +1,9 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using Resume.Application.Services.Implementation.Education;
 using Resume.Application.Services.Implementation.PasswordHasher;
 using Resume.Application.Services.Implementation.User;
+using Resume.Application.Services.Interface.Education;
 using Resume.Application.Services.Interface.PasswordHasher;
 using Resume.Application.Services.Interface.User;
 using Resume.Domain.Context;
@@ -21,7 +24,7 @@ mvcBuilder.AddRazorRuntimeCompilation();
 var connectionString = builder.Configuration.GetConnectionString("ResumeWebsite_1");
 
 builder.Services.AddDbContext<DatabaseContext>(option =>
-	option.UseSqlServer(connectionString), ServiceLifetime.Transient);
+    option.UseSqlServer(connectionString), ServiceLifetime.Transient);
 
 
 #endregion
@@ -33,6 +36,25 @@ builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositor
 
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
+builder.Services.AddTransient<IEducationService, EducationService>();
+
+#endregion
+
+#region Add Authentication
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultSignOutScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+}).AddCookie(options =>
+{
+    options.LoginPath = "/login";
+    options.LogoutPath = "/logout";
+    options.AccessDeniedPath = "/404-page-not-found";
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(43200);
+});
 
 #endregion
 
@@ -52,6 +74,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>

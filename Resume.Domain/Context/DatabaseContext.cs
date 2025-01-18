@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Resume.Domain.Entities.Education;
 using Resume.Domain.Entities.User;
 
 namespace Resume.Domain.Context
@@ -28,6 +29,16 @@ namespace Resume.Domain.Context
 		#region User
 
 		public DbSet<User> Users { get; set; }
+
+		#endregion
+
+		#region Resume
+
+        #region Education
+
+        public DbSet<Education> Educations { get; set; }
+
+        #endregion
 
 		#endregion
 	}
